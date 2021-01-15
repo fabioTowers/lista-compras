@@ -1,0 +1,97 @@
+body{
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    background: #3D7EAA;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFE47A, #3D7EAA);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFE47A, #3D7EAA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+div.umItem{
+    border-style: solid;
+    border-color: #BCCF02;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    background-color: #5BB12F;
+    color: #9B539C;
+    font-weight: bold;
+    font-size: large;
+    padding: 3px;
+}
+
+input.campo{
+    border-style: solid;
+    background-color: #5BB12F;
+    border-color: white;
+    color: #9B539C;
+    font-size: large;
+    font-weight: bold;
+    border-radius: 10px;
+    border-width: 1px;
+}
+
+input#tfProd{
+    width: 280px;
+}
+
+input#tfPreco{
+    width: 100px;
+}
+
+input#tfQtd{
+    width: 70px;
+}
+
+div.lista{
+    border: 3px solid #73C5FF;
+    border-radius: 10px;
+    background-color: #73C5FF;
+    color: #9B539C;
+    font-weight: bold;
+    font-size: x-large;
+    overflow: hidden;
+}
+
+.lista .conteudo{
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.divHeaderLista{
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+input.campoHeaderItem{
+    background-color: #73C5FF;
+    border-style: solid;
+    color: #000000;
+    font-size: large;
+    font-weight: bold;
+    border-radius: 10px;
+    border-width: 1px;
+    overflow: hidden;
+}
+
+input.campoHeaderQtd{
+    background-color: #73C5FF;
+    border-style: solid;
+    color: #000000;
+    font-size: large;
+    font-weight: bold;
+    border-radius: 10px;
+    border-width: 1px;
+    overflow: hidden;
+    width: 80px;
+}
+
+button.btnAdicionar{
+    font-size: large;
+    background-color: #73C5FF;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    font-weight: bold;
+    color: #9B539C;
+}
