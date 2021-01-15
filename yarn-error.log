@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: C:\Users\Fabio Mendes\Documents\lista-compras\package.json: Unexpected token , in JSON at position 869
+  SyntaxError: C:\Users\Fabio Mendes\Documents\lista-compras\package.json: Unexpected token } in JSON at position 1012
       at JSON.parse (<anonymous>)
       at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
       at Generator.next (<anonymous>)
@@ -61,12 +61,12 @@ npm manifest:
     },
     "devDependencies": {
       "gh-pages": "^3.1.0"
-    }
-  },
-  "homepage": "https://fabioTowers.github.io/lista-compras",
-  "scripts": {
+    },
+    "homepage": "https://fabioTowers.github.io/lista-compras",
+    "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    }
   }
 
 yarn manifest: 
