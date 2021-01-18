@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css'
+import imagem from './remove.png';
 
 /*
 function Item (props) {
@@ -71,7 +72,12 @@ class Lista extends React.Component {
                     Adicionar item <input type="text" className="campoHeaderItem" onChange={this.setProduto} value={this.state.produto}></input> Qtd. <input type="number" min="1" className="campoHeaderQtd" onChange={this.setQtd} value={this.state.qtd}></input> <button className="btnAdicionar" onClick={this.adicionarItem}>Adicionar</button>
                 </div>
                 <div className="conteudo">
-                    <Item itens={this.state.itens} somaPreco={this.soma} modQtd={this.modificaQtd} del={this.deletaItem} modProd={this.modificaProduto}/>
+                    <Item itens={this.state.itens} 
+                          somaPreco={this.soma} 
+                          modQtd={this.modificaQtd} 
+                          del={this.deletaItem} 
+                          modProd={this.modificaProduto}
+                          risca={this.riscarItem}/>
                 </div>
                 <div>Total R$ {this.state.total}</div>
             
@@ -203,21 +209,39 @@ class Lista extends React.Component {
         });//fim do setState
       }
 
+      riscarItem = (indice) => {
+        this.setState( state => {
+          const itens = state.itens.map( (item, pos) => {
+            if(pos === indice){
+              item.riscado = !item.riscado;
+              return item;
+            } else {
+              return item;
+            }
+          });//fim de map
+
+          return{
+            itens,
+          };
+        });//fim do setState
+      }
+
 }//fim da classe (component) lista
 
 function Item (props) {
-
+    
     return <> {props.itens.map( (item, indice) => (
-            <div className="umItem" key={item.id} >
-                <input type="checkbox" name="riscar" id=""></input>
+            //antes era umItem
+            <div className="umItem" key={item.id} style={{opacity: item.riscado ? 0.5 : 1}}>
+                <input type="checkbox" name="riscar" id="" onChange={e => {props.risca(indice)}}></input>
                 <input type="text" defaultValue={item.produto} className="campo" id="tfProd" onChange={e => {props.modProd(indice, e.target.value)} }></input>
                 <label htmlFor="preco"> R$ </label>
                 <input type="text" className="campo" id="tfPreco" onChange={e =>{props.somaPreco(indice, +e.target.value)}}></input>
                 <label htmlFor="qtd">   Qtd. </label>
                 <input type="number" value={item.qtd} min="1" className="campo" id="tfQtd" onChange={e =>{props.modQtd(indice, +e.target.value)}}></input>
                 <span> Subtotal R$ </span> {item.subTotal}
-                <a onClick={e => {props.del(indice, item.produto, item.subTotal)} }>
-                  <img src={"src\remove.png"} alt={"Remover"} height={"20px"}/>
+                <a href="/#" id="linkDel" onClick={e => {props.del(indice, item.produto, item.subTotal)} }>
+                  <img src={imagem} alt={"Remover"} height={"20px"}/>
                 </a>
            </div>
            ))}
