@@ -217,7 +217,7 @@ function Item (props) {
                 <input type="number" value={item.qtd} min="1" className="campo" id="tfQtd" onChange={e =>{props.modQtd(indice, +e.target.value)}}></input>
                 <span> Subtotal R$ </span> {item.subTotal}
                 <a onClick={e => {props.del(indice, item.produto, item.subTotal)} }>
-                  <img src={"remove.png"} alt={"Remover"} height={"20px"}/>
+                  <img src={"src\remove.png"} alt={"Remover"} height={"20px"}/>
                 </a>
            </div>
            ))}
