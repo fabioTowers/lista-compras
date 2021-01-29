@@ -134,7 +134,8 @@ class Lista extends React.Component {
 
       soma = (indice, novoValor) => {
         //alert("indice: " + indice + "; novo valor: " + novoValor);
-
+        //var subTotalAntigo;
+        this.setState({total: (this.state.total - this.state.itens[indice].subTotal) + (this.state.itens[indice].qtd * novoValor)})
         this.setState( state => {
           const itens = state.itens.map( (item, pos) => {
             if(pos === indice){
@@ -143,7 +144,9 @@ class Lista extends React.Component {
               //Esse trecho exibe um warning no console
               //this.state.total = (this.state.total - item.subTotal) + (item.qtd * novoValor);
               //Abaixo está a correção do warning
-              this.setState({total: (this.state.total - item.subTotal) + (item.qtd * novoValor)})
+              //this.setState({total: (this.state.total - item.subTotal) + (item.qtd * novoValor)})
+
+              //subTotalAntigo = item.subTotal;
 
               item.subTotal = item.qtd * novoValor;
               item.preco = novoValor;
@@ -158,17 +161,19 @@ class Lista extends React.Component {
           };
 
         });//fim de setState
+        //this.setState({total: (this.state.total - subTotalAntigo) + (this.state.itens[indice].qtd * novoValor)})
 
       }//fim da funçao soma
 
       modificaQtd = (indice, novoQtd) => {
+        this.setState({total: (this.state.total - this.state.itens[indice].subTotal) + (this.state.itens[indice].preco * novoQtd)})
         this.setState( state => {
           const itens = state.itens.map( (item, pos) => {
             if(pos === indice){
               //A linha abaixo dispara um warning no console
               //this.state.total = (this.state.total - item.subTotal) + (item.preco * novoQtd);
               //A linha abaixo corrige as mensagens de warning
-              this.setState({total: (this.state.total - item.subTotal) + (item.preco * novoQtd)})
+              //this.setState({total: (this.state.total - item.subTotal) + (item.preco * novoQtd)})
               item.subTotal = item.preco * novoQtd;
               item.qtd = novoQtd;
               return item;
