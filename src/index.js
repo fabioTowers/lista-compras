@@ -140,7 +140,10 @@ class Lista extends React.Component {
             if(pos === indice){
               //alert("índice: " + pos + "; novo valor: " + novoValor + "; valor antigo: " + item.preco);
 
-              this.state.total = (this.state.total - item.subTotal) + (item.qtd * novoValor);
+              //Esse trecho exibe um warning no console
+              //this.state.total = (this.state.total - item.subTotal) + (item.qtd * novoValor);
+              //Abaixo está a correção do warning
+              this.setState({total: (this.state.total - item.subTotal) + (item.qtd * novoValor)})
 
               item.subTotal = item.qtd * novoValor;
               item.preco = novoValor;
@@ -162,7 +165,10 @@ class Lista extends React.Component {
         this.setState( state => {
           const itens = state.itens.map( (item, pos) => {
             if(pos === indice){
-              this.state.total = (this.state.total - item.subTotal) + (item.preco * novoQtd);
+              //A linha abaixo dispara um warning no console
+              //this.state.total = (this.state.total - item.subTotal) + (item.preco * novoQtd);
+              //A linha abaixo corrige as mensagens de warning
+              this.setState({total: (this.state.total - item.subTotal) + (item.preco * novoQtd)})
               item.subTotal = item.preco * novoQtd;
               item.qtd = novoQtd;
               return item;
