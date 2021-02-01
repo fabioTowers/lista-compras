@@ -3,58 +3,6 @@ import ReactDOM from 'react-dom';
 import './style.css'
 import imagem from './remove.png';
 
-/*
-function Item (props) {
-    const [produto, setProduto] = useState(props.produto)
-    const [qtd, setQtd] = useState(props.qtd)
-    return <div className="umItem">
-        <input type="checkbox" name="riscar" id=""></input>
-        <input type="text" value={produto} className="campo" id="tfProd" onChange={e => setProduto(e.target.value)}></input>
-        <label for="preco"> R$ </label>
-        <input id="preco" type="text" className="campo" id="tfPreco" onChange={e =>{props.somaPreco(+e.target.value)}}></input>
-        <label for="qtd">   Qtd. </label>
-        <input id="qtd" type="number" min="1" value={qtd} className="campo" id="tfQtd" onChange={e => setQtd(e.target.value)}></input>
-        <span> Subtotal R$ </span>
-    </div>
-}
-
-class Lista extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            total: 0.00
-        }
-    }
-    
-    soma = (novoValor, valorAntigo) => {
-        this.setState({
-            total: (this.state.total - valorAntigo) + novoValor
-        })
-    }
-
-    render() {
-        return (
-            <div className="lista">
-                <div className="divHeaderLista">{"Título da lista"}
-                    <br/>
-                    Adicionar item <input type="text" className="campoHeaderItem"></input> Qtd. <input type="number" min="1" className="campoHeaderQtd"></input> <button className="btnAdicionar">Adicionar</button>
-                </div>
-                <div className="conteudo">
-                    <Item produto="Pão de batata"
-                        qtd="3"
-                        somaPreco={this.soma}></Item>
-                    <Item produto="Sanduiche"
-                        preco="5,42"
-                        qtd="1"
-                        somaPreco={this.soma}></Item>
-                </div>
-                <div>Total R$ {this.state.total}</div>
-            </div>
-        )
-    }
-}*/
-
 class Lista extends React.Component {
     constructor(props) {
         super(props)
@@ -80,25 +28,6 @@ class Lista extends React.Component {
                           risca={this.riscarItem}/>
                 </div>
                 <div>Total R$ {this.state.total}</div>
-            
-
-          {/*<div>
-            <h3>Tarefas</h3>
-            <TodoList items={this.state.items} />
-            <form onSubmit={this.handleSubmit}>
-              <label htmlFor="new-todo">
-                O que precisa ser feito?
-              </label>
-              <input
-                id="new-todo"
-                onChange={this.handleChange}
-                value={this.state.text}
-              />
-              <button>
-                Adicionar #{this.state.items.length + 1}
-              </button>
-            </form>
-          </div>*/}
 
             </div>
         );//fim do return
@@ -133,21 +62,10 @@ class Lista extends React.Component {
       }//fim do método adicionarItem()
 
       soma = (indice, novoValor) => {
-        //alert("indice: " + indice + "; novo valor: " + novoValor);
-        //var subTotalAntigo;
         this.setState({total: (this.state.total - this.state.itens[indice].subTotal) + (this.state.itens[indice].qtd * novoValor)})
         this.setState( state => {
           const itens = state.itens.map( (item, pos) => {
             if(pos === indice){
-              //alert("índice: " + pos + "; novo valor: " + novoValor + "; valor antigo: " + item.preco);
-
-              //Esse trecho exibe um warning no console
-              //this.state.total = (this.state.total - item.subTotal) + (item.qtd * novoValor);
-              //Abaixo está a correção do warning
-              //this.setState({total: (this.state.total - item.subTotal) + (item.qtd * novoValor)})
-
-              //subTotalAntigo = item.subTotal;
-
               item.subTotal = item.qtd * novoValor;
               item.preco = novoValor;
               return item;
@@ -161,8 +79,6 @@ class Lista extends React.Component {
           };
 
         });//fim de setState
-        //this.setState({total: (this.state.total - subTotalAntigo) + (this.state.itens[indice].qtd * novoValor)})
-
       }//fim da funçao soma
 
       modificaQtd = (indice, novoQtd) => {
@@ -170,10 +86,6 @@ class Lista extends React.Component {
         this.setState( state => {
           const itens = state.itens.map( (item, pos) => {
             if(pos === indice){
-              //A linha abaixo dispara um warning no console
-              //this.state.total = (this.state.total - item.subTotal) + (item.preco * novoQtd);
-              //A linha abaixo corrige as mensagens de warning
-              //this.setState({total: (this.state.total - item.subTotal) + (item.preco * novoQtd)})
               item.subTotal = item.preco * novoQtd;
               item.qtd = novoQtd;
               return item;
@@ -189,14 +101,10 @@ class Lista extends React.Component {
       }
 
       deletaItem = (indice, produto, subtotal) => {
-        
         if( window.confirm("Deseja deletar o item " + produto + "?") ) {
           this.setState({total: this.state.total - subtotal});
           this.setState(state => {
             const itens = state.itens.filter((item, pos) => indice !== pos);
-            /*this.setState(state => ({
-              total: this.state.total - subtotal
-            }));*/
             return {
               itens,
             };
@@ -241,9 +149,7 @@ class Lista extends React.Component {
 }//fim da classe (component) lista
 
 function Item (props) {
-    
     return <> {props.itens.map( (item, indice) => (
-            //antes era umItem
             <div className="umItem" key={item.id} style={{opacity: item.riscado ? 0.5 : 1}}>
                 <input type="checkbox" name="riscar" id="" onChange={e => {props.risca(indice)}}></input>
                 <input type="text" defaultValue={item.produto} className="campo" id="tfProd" onChange={e => {props.modProd(indice, e.target.value)} }></input>
