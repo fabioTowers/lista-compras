@@ -191,11 +191,12 @@ class Lista extends React.Component {
       deletaItem = (indice, produto, subtotal) => {
         
         if( window.confirm("Deseja deletar o item " + produto + "?") ) {
+          this.setState({total: this.state.total - subtotal});
           this.setState(state => {
             const itens = state.itens.filter((item, pos) => indice !== pos);
-            this.setState(state => ({
+            /*this.setState(state => ({
               total: this.state.total - subtotal
-            }));
+            }));*/
             return {
               itens,
             };
